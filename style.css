@@ -20,17 +20,17 @@ a {
 .container {
     overflow: hidden;
     position: fixed;
-    background-color: #F8F7F4;
+    background-color: #dcd6d0;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 750px;
-    height: 60px;
+    width: 790px;
+    height: 80px;
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
     border-radius: 45px;
-    box-shadow: 2px 2px 60px white;
+    box-shadow: 2px 2px 60px #c5bfb6;
     font-size: 20px;
 }
 
@@ -39,12 +39,14 @@ a {
 }
 
 .titulo {
+    font-size: 30px;
     padding-left: 20px;
     display: flex;
     align-items: center;
 }
 
 .navbar {
+    font-size: 21px;
     width: 400px;
     list-style: none;
     display: flex;
@@ -58,6 +60,10 @@ li:hover {
 }
 
 .inicio {
+    background-image: url(media/background\ debut.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     height: 500px;
@@ -66,15 +72,12 @@ li:hover {
     /* background-size: cover; */
 }
 
-/* .guitar {
-    position: absolute;
-    transform: rotate(180deg);
-    height: 400px;
-    margin-top: 200px;
-    margin-right: 300px;
-} */
 
 .noticias {
+    background-image: url(media/background\ fearless.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+    /* background-repeat: no-repeat; */
     display: flex;
     height: 500px;
     background-color: #eac086;
