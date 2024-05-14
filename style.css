@@ -1,10 +1,12 @@
 @font-face {
     font-family: folklore;
-    src: url(IMFellDWPica-Italic.ttf);
+    src: url(media/IMFellDWPica-Italic.ttf);
 }
 
-* {
-    font-family: folklore;
+@font-face {
+    font-family: poppins;
+    src: url(media/Poppins-Light.ttf);
+    font-weight: normal;
 }
 
 body {
@@ -26,16 +28,49 @@ a {
     margin-left: auto;
     margin-right: auto;
     width: 790px;
-    height: 80px;
+    height: 65px;
     display: flex;
     margin-top: 15px;
-    border-radius: 45px;
+    border-radius: 20px;
     box-shadow: 2px 2px 60px #c5bfb6;
     font-size: 20px;
+    z-index: 2;
 }
 
 .header .container {
     justify-content: space-between;
+}
+
+.header .banner {
+    height: 100vh;
+    background-image: url(media/101723-taylorswift-hero_epm1ht.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 0 -230px;
+    background-position: center;
+}
+
+.header .texto {
+    color: white;
+    font-family: poppins;
+    font-weight: 700;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    font-size: 70px;
+    row-gap: 20px;
+    z-index: 1;
+    text-transform: uppercase;
+    text-overflow: clip;
+    text-shadow: 3px 4px 7px rgba(11, 11, 11, 0.8);
 }
 
 .titulo {
@@ -43,9 +78,11 @@ a {
     padding-left: 20px;
     display: flex;
     align-items: center;
+    font-family: folklore;
 }
 
 .navbar {
+    font-family: folklore;
     font-size: 21px;
     width: 400px;
     list-style: none;
@@ -60,14 +97,13 @@ li:hover {
 }
 
 .inicio {
-    background-image: url(media/background\ debut.jpg);
+    /* background-image: url(media/background\ debut.jpg); */
     background-size: 100%;
-    background-attachment: fixed;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     height: 500px;
-    background-color: #bed7ba;
+    background-color: #d19db4;
     /* background-image: url("taylorswiftttpd.jpg"); */
     /* background-size: cover; */
 }
@@ -75,7 +111,6 @@ li:hover {
 
 .noticias {
     background-image: url(media/background\ fearless.jpg);
-    background-attachment: fixed;
     background-size: 100%;
     /* background-repeat: no-repeat; */
     display: flex;

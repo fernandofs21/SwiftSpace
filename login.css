@@ -1,10 +1,6 @@
 @font-face {
   font-family: folklore;
-  src: url(IMFellDWPica-Italic.ttf);
-}
-
-* {
-  font-family: folklore;
+  src: url(media/IMFellDWPica-Italic.ttf);
 }
 
 body {
@@ -26,13 +22,16 @@ a {
   margin-left: auto;
   margin-right: auto;
   width: 790px;
-  height: 80px;
+  height: 65px;
   display: flex;
   margin-top: 15px;
-  border-radius: 45px;
+  border-radius: 20px;
   box-shadow: 2px 2px 60px #c5bfb6;
   font-size: 20px;
+  z-index: 2;
+  font-family: folklore;
 }
+
 
 .header .container {
   justify-content: space-between;
@@ -73,8 +72,8 @@ li:hover {
 }
 
 .card {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   padding: 20px;
   border-radius: 15% 1%;
   display: flex;
