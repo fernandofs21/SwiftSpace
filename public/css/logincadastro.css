@@ -128,6 +128,29 @@ body {
 	align-items: center;
 }
 
+.login .cadastre-se {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 100px;
+	row-gap: 20px;
+}
+
+.cadastre-se a {
+	padding: 10px 20px;
+	border-radius: 20px;
+	font-size: 1em;
+	font-weight: bold;
+	color: white;
+	background-color: #942e2e;
+	width: 1000px;
+}
+
+.cadastre-se a:hover {
+	background-color: #b74444;
+}
+
 label {
 	color: #232323;
 	font-size: 2.5em;
@@ -139,14 +162,7 @@ label {
 	transition: .5s ease-in-out;
 }
 
-.datalabel {
-	position: absolute;
-	font-size: 10px;
-	margin: 0;
-	display: block;
-	margin-left: 68px;
-	margin-top: -6px;
-}
+
 
 input {
 	width: 60%;
@@ -202,16 +218,21 @@ button:hover {
 	background: rgb(202, 168, 139);
 	background: linear-gradient(180deg, rgb(200, 200, 197) 0%, rgb(187, 186, 176) 50%, rgba(171, 140, 112, 1) 100%);
 	border-radius: 60% / 10%;
-	transform: translateY(-160px);
+	/* transform: translateY(-160px); */
 	transition: .8s ease-in-out;
 }
 
-.cadastro label {
-	color: #302e2e;
-	transform: scale(.6);
+
+.datalabel {
+	position: absolute;
+	font-size: 10px;
+	margin: 0;
+	display: block;
+	margin-left: 68px;
+	margin-top: -6px;
 }
 
-#chk:checked~.cadastro {
+/* #chk:checked~.cadastro {
 	transform: translateY(-600px);
 	background-color: rgb(200, 200, 197);
 	transition: .8s ease-in-out;
@@ -223,4 +244,4 @@ button:hover {
 
 #chk:checked~.login label {
 	transform: scale(.6);
-}
+} */

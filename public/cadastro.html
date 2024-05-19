@@ -28,24 +28,13 @@
         </div>
       </div>
 
-      <input type="checkbox" id="chk" aria-hidden="true">
-
-      <div class="login">
-        <form>
-          <label for="chk" aria-hidden="true">Login</label>
-          <input type="email" placeholder="Email" id="login_email_input">
-          <input type="password" placeholder="Senha" id="login_senha_input">
-          <button onclick="entrar()">Entrar</button>
-        </form>
-      </div>
-
       <div class="cadastro">
         <form>
-          <label for="chk" aria-hidden="true">Cadastro</label>
+          <label>Cadastro</label>
           <input type="text" placeholder="Nome Completo" id="nome_input">
           <input type="email" placeholder="Email" id="email_input">
           <input type="password" placeholder="Senha" id="senha_input">
-          <input type="password" placeholder="Repita a senha" id="confirmacao_senha_ipnut">
+          <input type="password" placeholder="Repita a senha" id="confirmacao_senha_input">
           <label for="data" class="datalabel">Data de nascimento</label>
           <input type="date" id="data_nascimento_input">
           <button onclick="cadastrar()">Cadastre-se</button>
@@ -64,71 +53,6 @@
 
 </html>
 <script>
-  function entrar() {
-    aguardar();
-
-    var emailVar = login_email_input.value;
-    var senhaVar = login_senha_input.value;
-
-    if (emailVar == "" || senhaVar == "") {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-      finalizarAguardar();
-      return false;
-    }
-    else {
-      setInterval(sumirMensagem, 5000)
-    }
-
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", senhaVar);
-
-    fetch("/usuarios/autenticar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      })
-    }).then(function (resposta) {
-      console.log("ESTOU NO THEN DO entrar()!")
-
-      if (resposta.ok) {
-        console.log(resposta);
-
-        resposta.json().then(json => {
-          console.log(json);
-          console.log(JSON.stringify(json));
-          sessionStorage.EMAIL_USUARIO = json.email;
-          sessionStorage.NOME_USUARIO = json.nome;
-          sessionStorage.ID_USUARIO = json.id;
-          sessionStorage.CPF_USUARIO = json.cpf;
-          sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-          setTimeout(function () {
-            window.location = "./dashboard/quiz.html";
-          }, 1000); // apenas para exibir o loading
-
-        });
-
-      } else {
-
-        console.log("Houve um erro ao tentar realizar o login!");
-
-        resposta.text().then(texto => {
-          console.error(texto);
-          finalizarAguardar(texto);
-        });
-      }
-
-    }).catch(function (erro) {
-      console.log(erro);
-    })
-
-    return false;
-  }
 
   function cadastrar() {
     aguardar();
