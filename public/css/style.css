@@ -37,7 +37,7 @@ a {
     height: 65px;
     display: flex;
     margin-top: 15px;
-    border-radius: 25px;
+    border-radius: 30px;
     box-shadow: 4px 4px 70px #c585c5;
     font-size: 20px;
     z-index: 2;
@@ -88,6 +88,7 @@ a {
 .ts {
     color: #973ca1;
     font-weight: 700;
+    text-shadow: 3px 4px 7px rgba(235, 184, 240, 0.8);
 }
 /* 
 .fenomeno {
@@ -105,9 +106,9 @@ a {
     justify-content: center;
     border: 2px solid white;
     border-radius: 20px;
-    height: 50vh;
+    height: 40vh;
     margin-right: 60px;
-    width: 30vw;
+    width: 28vw;
     margin-top: auto;
     margin-bottom: auto;
     flex-direction: column;
@@ -116,7 +117,7 @@ a {
     font-family: Raleway;
     text-align: justify;
     font-size: 30px;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .texto1 {
@@ -138,6 +139,9 @@ a.button {
     justify-content: center;
     align-items: center;
     font-weight: 700;
+}
+a.button:active {
+    background-color: rgba(217, 19, 235, 0.2);
 }
 
 

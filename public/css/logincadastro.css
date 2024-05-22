@@ -18,7 +18,7 @@ a {
 	height: 65px;
 	display: flex;
 	margin-top: 15px;
-	border-radius: 20px;
+	border-radius: 30px;
 	box-shadow: 2px 2px 60px #c5bfb6;
 	font-size: 20px;
 	z-index: 2;
@@ -104,7 +104,7 @@ body {
 
 .formulario {
 	margin: auto;
-	margin-top: 70px;
+	margin-top: 50px;
 	width: 400px;
 	height: 550px;
 	background: rgb(187, 187, 183);
