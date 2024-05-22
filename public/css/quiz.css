@@ -76,7 +76,7 @@ a {
     backdrop-filter: blur(5px);
     border-radius: 20px;
     padding: 8px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
@@ -104,6 +104,7 @@ a {
     align-items: center;
     justify-content: center;
     color: white;
+    text-align: center;
 }
 
 .alternatives {
@@ -117,9 +118,11 @@ a {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    text-align: center;
 }
 
 .botao {
+    
     display: flex;
     background-color: #d8b39b;
     width: 35%;
@@ -128,17 +131,58 @@ a {
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .botao:hover {
     background-color: #c78f6a;
+    transform: scale(1.1);
+}
+
+
+
+.iniciar {
+    height: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 
 }
 
-.iniciar {
-    display: none;
+.iniciar .titulo {
+    margin-top: 40px;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.iniciar button {
+    font-family: Raleway;
+    font-weight: 700;
+    background-color: rgb(175, 74, 175);
+    border: none;
+    border-radius: 15px;
+    font-size: 40px;
+    width: 40%;
+    height: 20%;
+}
+
+.iniciar button:hover {
+    transform: scale(1.1);
+    background-color: rgb(223, 79, 223);
+    font-size: 42px;
+    cursor: pointer;
+}
+
+.errado {
+    background-color: rgb(250, 93, 93);
+    transition: background-color 1000ms linear;
+}
+.correto {
+    background-color: rgb(113, 218, 119);
+    transition: background-color 1000ms linear;
 }
 
 
@@ -152,9 +196,14 @@ a {
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    color: rgb(58, 189, 58);
+    color: rgb(189, 58, 58);
     text-shadow: 1px 1px 3px black;
+}
 
+.pontuacao {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .graph {

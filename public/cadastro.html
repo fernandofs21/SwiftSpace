@@ -110,14 +110,14 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    if (emailVar.indexOf('@') < 0) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+    // if (emailVar.indexOf('@') < 0) {
+    //   cardErro.style.display = "block";
+    //   mensagem_erro.innerHTML =
+    //     "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
-      return false;
-    }
+    //   finalizarAguardar();
+    //   return false;
+    // }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
