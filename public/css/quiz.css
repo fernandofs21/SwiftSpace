@@ -176,11 +176,11 @@ a {
 
 .errado {
     background-color: rgb(250, 93, 93);
-    transition: background-color 10ms linear
+    transition: background-color 300ms linear
 }
 .correto {
     background-color: rgb(113, 218, 119);
-    transition: background-color 10ms linear;
+    transition: background-color 300ms linear;
 }
 
 .errado:hover {
