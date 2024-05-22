@@ -99,8 +99,8 @@ a {
     width: 90%;
     height: 20%;
     background-color: #7b3ea7;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 22px;
+    font-weight: 400;
     align-items: center;
     justify-content: center;
     color: white;
@@ -111,7 +111,7 @@ a {
     display: flex;
     /* background-color: rgba(38, 202, 87, 0.5);     */
     /* padding: 8px; */
-    margin-top: 3px;
+    margin-top: 30px;
     border-radius: 10px;
     width: 90%;
     height: 50%;
@@ -125,23 +125,21 @@ a {
     
     display: flex;
     background-color: #d8b39b;
-    width: 35%;
-    height: 35%;
+    width: 40%;
+    height: 40%;
     margin: 10px;
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
 }
 
 .botao:hover {
     background-color: #c78f6a;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
-
-
 
 .iniciar {
     height: 60%;
@@ -152,7 +150,6 @@ a {
 }
 
 .iniciar .titulo {
-    margin-top: 40px;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
@@ -176,13 +173,22 @@ a {
     cursor: pointer;
 }
 
+
 .errado {
     background-color: rgb(250, 93, 93);
-    transition: background-color 1000ms linear;
+    transition: background-color 10ms linear
 }
 .correto {
     background-color: rgb(113, 218, 119);
-    transition: background-color 1000ms linear;
+    transition: background-color 10ms linear;
+}
+
+.errado:hover {
+    background-color: rgb(250, 93, 93);
+}
+
+.correto:hover {
+    background-color: rgb(113, 218, 119);
 }
 
 

@@ -30,7 +30,7 @@ var perguntas_quiz = [
         dificuldade: "Fácil"
     }, 
     {
-        pergunta: "Complete a letra: 'Is this the end of all the endings? My broken bones are ____________'",
+        pergunta: "Complete a letra: 'Is this the end of all the endings? My broken bones are ...'",
         alternativas: ["Fading", "Hurting", "Dazzling", "Mending"],
         resposta: 3,
         dificuldade: "Média"
@@ -49,7 +49,7 @@ var pontos = 0;
 function mostrarPergunta() {
 
     iniciar.style.display = "none";
-    perguntas.style.display = "flex";
+    perguntas.style.display = "flex";   
 
 
     numero_pergunta.innerHTML = `${pergunta_atual + 1}.`
@@ -59,26 +59,33 @@ function mostrarPergunta() {
     alt2.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[1]}`;
     alt3.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[2]}`;
     alt4.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[3]}`;
-    div_msg.innerHTML = ''; 
 }
 
 function verificar(selected) {
-    if (selected === perguntas_quiz[pergunta_atual].resposta) {
-        div_msg.innerHTML = `<span style="color: rgb(58, 189, 58);">Resposta Correta</span>`;
+
+    var correta = perguntas_quiz[pergunta_atual].resposta;
+    var selectedElement = document.getElementById(`alt${selected + 1}`);
+    var corretaElement = document.getElementById(`alt${correta + 1}`);
+
+    if (selected === correta) {
+        selectedElement.classList.add('correto');
         pontos++;
     } else {
-        div_msg.innerHTML = `<span style="color: rgb(189, 58, 58);">Resposta Errada</span>`;
+        selectedElement.classList.add('errado');
+        corretaElement.classList.add('correto');
     }
 
     setTimeout(() => {
         pergunta_atual++;
 
         if(pergunta_atual < perguntas_quiz.length) {
+            selectedElement.classList.remove('correto');
+            selectedElement.classList.remove('errado');
+            corretaElement.classList.remove('correto');
             mostrarPergunta();
         } else {
             pergunta_atual = 0;
             
-
             iniciar.style.display = "flex";
             perguntas.style.display = "none";
 
@@ -86,13 +93,13 @@ function verificar(selected) {
                 div_pontos.innerHTML = `PARABÉNS! VOCÊ ACERTOU ${pontos} de ${perguntas_quiz.length}`
             } else {
                 div_pontos.innerHTML = `VOCÊ ACERTOU APENAS ${pontos} de ${perguntas_quiz.length}, TENTE NOVAMENTE!`
-
             }
-
+            selectedElement.classList.remove('correto');
+            selectedElement.classList.remove('errado');
+            corretaElement.classList.remove('correto');
             pontos = 0
-
         }
-    }, 1000)
+    }, 1500)
 
 }
 
