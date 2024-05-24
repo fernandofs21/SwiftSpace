@@ -222,6 +222,29 @@ button:hover {
 	transition: .8s ease-in-out;
 }
 
+select {
+	width: 66%;
+	height: 33px;
+	/* background: #e0dede; */
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid #484848;
+	outline: 0;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	color: black;
+}
+
+.select:focus {
+	border-color: rgb(221, 61, 61);
+	transition: border-color 0.2s ease-in;
+}
+
+/* select option {
+    background: rgba(0,0,0,0.3);
+    color:red;
+} */
 
 .datalabel {
 	position: absolute;

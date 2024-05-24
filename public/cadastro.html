@@ -29,17 +29,17 @@
       </div>
 
       <div class="cadastro">
-        <form>
+        <div>
           <label>Cadastro</label>
           <input type="text" placeholder="Nome Completo" id="nome_input">
           <input type="email" placeholder="Email" id="email_input">
           <input type="password" placeholder="Senha" id="senha_input">
           <input type="password" placeholder="Repita a senha" id="confirmacao_senha_input">
-          <select name="album" id="listaAlbuns">
+          <select name="album" id="listaAlbuns" class="albuns">
             <option value="#" disabled selected>Selecione seu álbum favorito</option>
           </select>
           <button onclick="cadastrar()">Cadastre-se</button>
-        </form>
+        </div>
       </div>
 
       <div id="div_aguardar" class="loading-div">
