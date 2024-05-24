@@ -9,7 +9,7 @@
   <script src="./js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="listar()">
   <div class="header">
     <div class="container">
       <h1 class="titulo"><a href="index.html">SwiftSpace</a></h1>
@@ -35,8 +35,9 @@
           <input type="email" placeholder="Email" id="email_input">
           <input type="password" placeholder="Senha" id="senha_input">
           <input type="password" placeholder="Repita a senha" id="confirmacao_senha_input">
-          <label for="data" class="datalabel">Data de nascimento</label>
-          <input type="date" id="data_nascimento_input">
+          <select name="album" id="listaAlbuns">
+            <option value="#" disabled selected>Selecione seu álbum favorito</option>
+          </select>
           <button onclick="cadastrar()">Cadastre-se</button>
         </form>
       </div>
@@ -63,14 +64,15 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var dataNascimentoVar = data_nascimento_input.value;
+    var albumVar = listaAlbuns.value;
+    // var dataNascimentoVar = data_nascimento_input.value;
 
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      dataNascimentoVar == ""
+      albumVar == "#"
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -131,7 +133,8 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        dataNascimentoServer: dataNascimentoVar
+        albumServer: albumVar
+        // dataNascimentoServer: dataNascimentoVar
       }),
     })
       .then(function (resposta) {
@@ -147,7 +150,6 @@
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
           finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
@@ -159,6 +161,22 @@
       });
 
     return false;
+  }
+
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaAlbuns.innerHTML += `<option value='${empresa.idAlbum}'>${empresa.titulo}</option>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
   }
 
   function sumirMensagem() {
