@@ -46,6 +46,13 @@ var perguntas_quiz = [
 var pergunta_atual = 0;
 var pontos = 0;
 
+function embaralharPerguntas() {
+    for (var index = perguntas_quiz.length - 1; index > 0; index--) {
+        var novoIndex = Math.floor(Math.random() * (index + 1));
+        [perguntas_quiz[index], perguntas_quiz[novoIndex]] = [perguntas_quiz[novoIndex], perguntas_quiz[index]];
+    }
+}
+
 function mostrarPergunta() {
 
     iniciar.style.display = "none";
@@ -98,9 +105,11 @@ function verificar(selected) {
             selectedElement.classList.remove('errado');
             corretaElement.classList.remove('correto');
             pontos = 0
+            embaralharPerguntas()
         }
     }, 1500)
 
 }
 
+embaralharPerguntas()
 mostrarPergunta();
