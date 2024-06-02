@@ -81,23 +81,24 @@ a {
     text-shadow: 3px 4px 7px rgba(231, 222, 222, 0.8);
 }
 
-/* .conheca {
-    letter-spacing: 25px;
-} */
+.conheca {
+    font-size: 40px;
+}
 
 .ts {
     color: #973ca1;
     font-weight: 700;
+    font-size: 65px;
     text-shadow: 3px 4px 7px rgba(235, 184, 240, 0.8);
 }
-/* 
+
 .fenomeno {
-    letter-spacing:4px;
+    font-size: 50px;
 }
 
 .mundial {
-    letter-spacing: 27px;
-} */
+    font-size: 50px;
+}
 
 
 .quizbox {
@@ -164,7 +165,8 @@ a.button:active {
 }
 
 li:hover {
-    font-size: 23px;
+    /* font-size: 23px; */
+    transform: scale(1.1);
     font-weight: bold;
 }
 
@@ -174,7 +176,7 @@ li:hover {
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    height: 500px;
+    height: 75vh;
     background: rgb(208,90,190);
     background: linear-gradient(180deg, rgba(208,90,190,1) 0%, rgba(143,48,168,1) 50%, rgba(111,30,151,1) 100%);
     /* background-image: url("taylorswiftttpd.jpg"); */

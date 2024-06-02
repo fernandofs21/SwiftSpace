@@ -107,7 +107,7 @@ function verificar(selected) {
             pontos = 0
             embaralhar()
         }
-    }, 1500)
+    }, 2000)
 
 }
 
