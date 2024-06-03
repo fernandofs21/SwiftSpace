@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="css/quiz.css">
+    <script src="js/quizVida.js"></script>
+</head>
+<body onload="validarSessao()">
+    <div class="box">
+        <a href="index.html"><div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div></a>
+
+        <div class="quiz">
+            <div class="ranking"></div>
+            <div class="game iniciar" id="iniciar">
+                <div class="titulo">Quiz de conhecimentos sobre a vida e as músicas de Taylor Swift</div>
+                <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
+                <div class="pontuacao" id="div_pontos"></div>
+            </div>
+            <div class="game" id="perguntas">
+                <div class="number"><span id="numero_pergunta"></span><di id="dificuldade_pergunta"></di></div>
+                <div class="question" id="div_pergunta"></div>
+                <div class="alternatives">
+                    <div class="botao" id="alt1" onclick="verificar(0)"></div>
+                    <div class="botao" id="alt2" onclick="verificar(1)"></div>
+                    <div class="botao" id="alt3" onclick="verificar(2)"></div>
+                    <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                </div>
+            </div>
+            <div class="graph"></div>
+        </div>
+    </div>
+</body>
+</html>
