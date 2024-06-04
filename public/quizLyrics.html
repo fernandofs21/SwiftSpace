@@ -72,6 +72,8 @@
 
     var pergunta_atual = 0;
     var pontos = 0;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var idQuiz = 2;
 
     function embaralhar() {
         for (var index = perguntas_quiz.length - 1; index > 0; index--) {
@@ -96,7 +98,6 @@
     }
 
     function verificar(selected) {
-
         var correta = perguntas_quiz[pergunta_atual].resposta;
         var selectedElement = document.getElementById(`alt${selected + 1}`);
         var corretaElement = document.getElementById(`alt${correta + 1}`);
@@ -118,26 +119,57 @@
                 corretaElement.classList.remove('correto');
                 mostrarPergunta();
             } else {
-                pergunta_atual = 0;
-
-                iniciar.style.display = "flex";
-                perguntas.style.display = "none";
-
-                if (pontos > (perguntas_quiz.length / 2)) {
-                    div_pontos.innerHTML = `PARABÉNS! VOCÊ ACERTOU ${pontos} de ${perguntas_quiz.length}`
-                } else {
-                    div_pontos.innerHTML = `VOCÊ ACERTOU APENAS ${pontos} de ${perguntas_quiz.length}, TENTE NOVAMENTE!`
-                }
-                selectedElement.classList.remove('correto');
-                selectedElement.classList.remove('errado');
-                corretaElement.classList.remove('correto');
-
-
-                pontos = 0
-                embaralhar()
+                tempo = new Date();
+                finalizarQuiz();
             }
-        }, 2000)
+        }, 500);
+    }
 
+    function finalizarQuiz() {
+
+        var resultadosQuiz = {
+            idUsuario: idUsuario,
+            idQuiz: idQuiz,
+            pontos: pontos,
+        };
+
+        enviarDadosQuiz(resultadosQuiz);
+
+        iniciar.style.display = "flex";
+        perguntas.style.display = "none";
+
+        if (pontos > (perguntas_quiz.length / 2)) {
+            div_pontos.innerHTML = `PARABÉNS! VOCÊ ACERTOU ${pontos} de ${perguntas_quiz.length}`;
+        } else {
+            div_pontos.innerHTML = `VOCÊ ACERTOU APENAS ${pontos} de ${perguntas_quiz.length}, TENTE NOVAMENTE!`;
+        }
+
+        pergunta_atual = 0;
+        pontos = 0;
+        embaralhar();
+    }
+
+    function enviarDadosQuiz(resultadosQuiz) {
+        console.log('Enviando dados do quiz:', resultadosQuiz); 
+
+        fetch('/quiz/registrarTentativa', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(resultadosQuiz)
+        })
+            .then(resposta => {
+                if (!resposta.ok) {
+                    return resposta.text().then(textoErro => {
+                        throw new Error(`Erro ao enviar dados do quiz para o servidor: ${textoErro}`);
+                    });
+                }
+                console.log('Dados do quiz enviados com sucesso');
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados do quiz para o servidor:', error);
+            });
     }
 
     embaralhar()

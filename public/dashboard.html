@@ -16,7 +16,7 @@
 </head>
 
 
-<body>
+<body onload="validarSessao()">
 
     <div class="janela">
         <div class="header-left">
@@ -79,7 +79,6 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    c_usuario.innerHTML = sessionStorage.CPF_USUARIO;
 
     let proximaAtualizacao;
 

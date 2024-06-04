@@ -84,19 +84,22 @@
 
             if (resposta.ok) {
                 console.log(resposta);
-
                 resposta.json().then(json => {
-                    console.log(json);
+                console.log(json); // Verifique a estrutura do JSON aqui
+                if (json.id && json.email && json.nome) { // Verifica se as propriedades existem
                     console.log(JSON.stringify(json));
-                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
 
                     setTimeout(function () {
-                        window.location = "./quiz.html";
+                        window.location = "./dashboard.html";
                     }, 1000); // apenas para exibir o loading
-
-                });
+                } else {
+                    console.error("Propriedades esperadas não encontradas no JSON:", json);
+                    finalizarAguardar("Propriedades esperadas não encontradas no JSON");
+                }
+            });
 
             } else {
 
