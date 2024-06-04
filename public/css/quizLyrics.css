@@ -6,12 +6,13 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(../assets/imgs/sn.webp);
+    background-image: url(../assets/imgs/GPIwbskacAA2SaS.jpeg);
     background-size: cover;
     background-color: rgb(197, 78, 181);
     overflow: hidden;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position-y: -140px;
 }
 
 a {
@@ -25,6 +26,7 @@ a {
 
 .imgsair {
     width: 3rem;
+    filter: invert(100%);
 }
 
 .sair {
@@ -35,10 +37,10 @@ a {
     justify-content: space-evenly;
     font-family: Raleway;
     text-transform: uppercase;
-    color: black;
+    color: white;
     font-weight: 1000;
     font-size: 1.5rem;
-    text-shadow: 3px 1px 9px rgb(248, 244, 244);
+    text-shadow: 3px 1px 9px rgb(138, 138, 138);
     cursor: pointer
 }
 
@@ -89,6 +91,7 @@ a {
     width: 90%;
     padding: 5px;
     font-weight: 500;
+    color: white;
 }
 
 .question {
@@ -98,12 +101,12 @@ a {
     border-radius: 10px;
     width: 90%;
     height: 20%;
-    background-color: #7b3ea7;
+    background-color: #8fd3ee;
     font-size: 22px;
     font-weight: 400;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(20, 20, 20);
     text-align: center;
 }
 
@@ -124,7 +127,9 @@ a {
 .botao {
     
     display: flex;
-    background-color: #d8b39b;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fcc7a8;
     width: 40%;
     height: 40%;
     margin: 10px;
@@ -137,7 +142,7 @@ a {
 }
 
 .botao:hover {
-    background-color: #c78f6a;
+    background-color: #ce9f80;
     transform: scale(1.05);
 }
 

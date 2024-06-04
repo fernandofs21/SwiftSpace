@@ -404,6 +404,10 @@ canvas {
   border: 2px solid rgb(219, 219, 219);
 }
 
+.btn-nav:hover {
+  background-color: #c7069d;
+}
+
 
 .btn-nav h3,
 .btn-logout h3 {

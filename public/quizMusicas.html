@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="css/quiz.css">
-    <script src="js/quizMusicas.js"></script>
+    <link rel="stylesheet" href="css/quizMusicas.css">
 </head>
-<body onload="validarSessao()">
+
+<body onload="validarSessao()" class="quiz3">
     <div class="box">
-        <a href="index.html"><div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div></a>
+        <a href="dashboard.html">
+            <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div>
+        </a>
 
         <div class="quiz">
             <div class="ranking"></div>
@@ -19,7 +22,9 @@
                 <div class="pontuacao" id="div_pontos"></div>
             </div>
             <div class="game" id="perguntas">
-                <div class="number"><span id="numero_pergunta"></span><di id="dificuldade_pergunta"></di></div>
+                <div class="number"><span id="numero_pergunta"></span>
+                    <div id="dificuldade_pergunta"></div>
+                </div>
                 <div class="question" id="div_pergunta"></div>
                 <div class="alternatives">
                     <div class="botao" id="alt1" onclick="verificar(0)"></div>
@@ -32,4 +37,140 @@
         </div>
     </div>
 </body>
+
 </html>
+<script>
+    var perguntas_quiz = [
+        {
+            pergunta: "Qual é o nome do terceiro álbum de estudio de Taylor?",
+            alternativas: ["Fearless", "Speak Now", "Red", "1989"],
+            resposta: 1,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Qual é o álbum com mais longa duração de Taylor?",
+            alternativas: ["Red (Taylor's Version)", "The Tortured Poets Department: The Anthology", "Speak Now (Taylor's Version)", "Midnights (The Til Dawn Edition)"],
+            resposta: 0,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Quantas faixas tem o álbum com mais músicas de Taylor?",
+            alternativas: ["29", "30", "31", "32"],
+            resposta: 2, 
+            dificuldade: "Difícil"
+        },
+        {
+            pergunta: "Qual foi o primeiro single do álbum 'Lover'?",
+            alternativas: ["Cruel Summer", "Lover", "ME!", "You Need To Calm Down"],
+            resposta: 2,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Qual desses álbuns foi lançado apenas algumas horas após seu anúncio oficial?",
+            alternativas: ["folklore", "Midnights", "The Tortured Poets Department", "reputation"],
+            resposta: 0,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Qual destas músicas não faz parte do 'Teenage Love Triangle' de folklore?",
+            alternativas: ["cardigan", "august", "invisible string", "betty"],
+            resposta: 2,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Quem é 'William Bowery' creditado em algumas músicas dos álbuns folklore e evermore?",
+            alternativas: ["Paul McCartney", "Joe Alwyn", "Matt Healy", "Jack Antonoff"],
+            resposta: 1,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Com qual álbum Taylor ganhou seu segundo grammy de Album Of The Year?",
+            alternativas: ["Fearless", "Red", "1989", "reputation"],
+            resposta: 2,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Em que ano Taylor lançou a música 'I Knew You Were Trouble'?",
+            alternativas: ["2010", "2011", "2012", "2013"],
+            resposta: 2,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Em quais duas músicas Taylor faz referência a obras dos escritores F. Scott Fitzgerald e Robert Frost, respectivamente?",
+            alternativas: ["happiness e This Is Why We Can't Have Nice Things", "tolerate it e happiness", "'tis the damn season e tolerate it", "This is Why We Can't Have Nice Things e 'tis the damn season"],
+            resposta: 3,
+            dificuldade: "Difícil"
+        }
+    ];
+
+    var pergunta_atual = 0;
+    var pontos = 0;
+
+    function embaralhar() {
+        for (var index = perguntas_quiz.length - 1; index > 0; index--) {
+            var novoIndex = Math.floor(Math.random() * (index + 1));
+            [perguntas_quiz[index], perguntas_quiz[novoIndex]] = [perguntas_quiz[novoIndex], perguntas_quiz[index]];
+        }
+    }
+
+    function mostrarPergunta() {
+
+        iniciar.style.display = "none";
+        perguntas.style.display = "flex";
+
+
+        numero_pergunta.innerHTML = `${pergunta_atual + 1}.`
+        dificuldade_pergunta.innerHTML = `Dificuldade: ${perguntas_quiz[pergunta_atual].dificuldade}`
+        div_pergunta.innerHTML = `${perguntas_quiz[pergunta_atual].pergunta}`;
+        alt1.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[0]}`;
+        alt2.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[1]}`;
+        alt3.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[2]}`;
+        alt4.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[3]}`;
+    }
+
+    function verificar(selected) {
+
+        var correta = perguntas_quiz[pergunta_atual].resposta;
+        var selectedElement = document.getElementById(`alt${selected + 1}`);
+        var corretaElement = document.getElementById(`alt${correta + 1}`);
+
+        if (selected === correta) {
+            selectedElement.classList.add('correto');
+            pontos++;
+        } else {
+            selectedElement.classList.add('errado');
+            corretaElement.classList.add('correto');
+        }
+
+        setTimeout(() => {
+            pergunta_atual++;
+
+            if (pergunta_atual < perguntas_quiz.length) {
+                selectedElement.classList.remove('correto');
+                selectedElement.classList.remove('errado');
+                corretaElement.classList.remove('correto');
+                mostrarPergunta();
+            } else {
+                pergunta_atual = 0;
+
+                iniciar.style.display = "flex";
+                perguntas.style.display = "none";
+
+                if (pontos > (perguntas_quiz.length / 2)) {
+                    div_pontos.innerHTML = `PARABÉNS! VOCÊ ACERTOU ${pontos} de ${perguntas_quiz.length}`
+                } else {
+                    div_pontos.innerHTML = `VOCÊ ACERTOU APENAS ${pontos} de ${perguntas_quiz.length}, TENTE NOVAMENTE!`
+                }
+                selectedElement.classList.remove('correto');
+                selectedElement.classList.remove('errado');
+                corretaElement.classList.remove('correto');
+                pontos = 0
+                embaralhar()
+            }
+        }, 2000)
+
+    }
+
+    embaralhar()
+    mostrarPergunta();
+</script>

@@ -1,0 +1,224 @@
+@font-face {
+    font-family: Raleway;
+    src: url(../assets/fonts/Raleway-VariableFont_wght.ttf)
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../assets/imgs/GNhHC_xaMAAAtWZ.jpeg);
+    background-size: cover;
+    background-color: rgb(197, 78, 181);
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-y: -130px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.box {
+    display: flex;
+}
+
+.imgsair {
+    width: 3rem;
+    filter: invert(100%);
+}
+
+.sair {
+    display: flex;
+    margin: 12px 12px;
+    width: 10vw;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: Raleway;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 1000;
+    font-size: 1.5rem;
+    text-shadow: 3px 1px 9px rgb(133, 133, 133);
+    cursor: pointer
+}
+
+.sair:hover {
+    font-size: 1.75rem;
+    img {
+        width: 3.25rem;
+    }
+}
+
+.quiz {
+    position: absolute;
+    margin: auto;
+    margin-top: 115px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+    font-family: Raleway;
+    /* background-color: rgba(146, 32, 146, 0.5); */
+}
+
+.ranking {
+    /* background-color: rgba(32, 119, 146, 0.5); */
+    width: 16%;
+    height: 40%;
+}
+
+.game {
+    background-color: rgba(75, 75, 75, 0.2);
+    width: 50%;
+    height: 90%;
+    backdrop-filter: blur(3px);
+    border-radius: 20px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number {
+    display: flex;
+    font-size: 30px;
+    justify-content: space-between;
+    /* background-color: red; */
+    width: 90%;
+    padding: 5px;
+    font-weight: 500;
+    color: white;
+}
+
+.question {
+    display: flex;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 90%;
+    height: 20%;
+    background-color: #979797;
+    font-size: 22px;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-align: center;
+}
+
+.alternatives {
+    display: flex;
+    /* background-color: rgba(38, 202, 87, 0.5);     */
+    /* padding: 8px; */
+    margin-top: 30px;
+    border-radius: 10px;
+    width: 90%;
+    height: 50%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.botao {
+    
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #e2d8b6;
+    width: 40%;
+    height: 40%;
+    margin: 10px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background-color: #c78f6a;
+    transform: scale(1.05);
+}
+
+.iniciar {
+    height: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.iniciar .titulo {
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.iniciar button {
+    font-family: Raleway;
+    font-weight: 700;
+    background-color: rgb(175, 74, 175);
+    border: none;
+    border-radius: 15px;
+    font-size: 40px;
+    width: 40%;
+    height: 20%;
+}
+
+.iniciar button:hover {
+    transform: scale(1.1);
+    background-color: rgb(223, 79, 223);
+    font-size: 42px;
+    cursor: pointer;
+}
+
+
+.errado {
+    background-color: rgb(250, 93, 93);
+    transition: background-color 300ms linear
+}
+.correto {
+    background-color: rgb(113, 218, 119);
+    transition: background-color 300ms linear;
+}
+
+.errado:hover {
+    background-color: rgb(250, 93, 93);
+}
+
+.correto:hover {
+    background-color: rgb(113, 218, 119);
+}
+
+
+.msg {
+    display: flex;
+    /* background-color: rgb(29, 168, 29); */
+    width: 50%;
+    height: 13%;
+    font-size: 40px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: rgb(189, 58, 58);
+    text-shadow: 1px 1px 3px black;
+}
+
+.pontuacao {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.graph {
+    /* background-color: rgba(32, 119, 146, 0.5); */
+    width: 16%;
+    height: 40%;
+}

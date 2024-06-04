@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="css/quiz.css">
-    <script src="js/quizVida.js"></script>
+    <link rel="stylesheet" href="css/quizVida.css">
 </head>
-<body onload="validarSessao()">
+
+<body onload="validarSessao()" class="quiz1">
     <div class="box">
-        <a href="index.html"><div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div></a>
+        <a href="dashboard.html">
+            <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div>
+        </a>
 
         <div class="quiz">
             <div class="ranking"></div>
@@ -19,7 +22,9 @@
                 <div class="pontuacao" id="div_pontos"></div>
             </div>
             <div class="game" id="perguntas">
-                <div class="number"><span id="numero_pergunta"></span><di id="dificuldade_pergunta"></di></div>
+                <div class="number"><span id="numero_pergunta"></span>
+                    <div id="dificuldade_pergunta"></div>
+                </div>
                 <div class="question" id="div_pergunta"></div>
                 <div class="alternatives">
                     <div class="botao" id="alt1" onclick="verificar(0)"></div>
@@ -32,4 +37,101 @@
         </div>
     </div>
 </body>
+
 </html>
+<script>
+    var perguntas_quiz = [
+        {
+            pergunta: "Qual é a data de nascimento de Taylor Swift?",
+            alternativas: ["13 de Dezembro de 1989", "31 de Dezembro de 1989", "13 de Novembro de 1989", "31 de Novembro de 1989"],
+            resposta: 0,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Pra qual cidade Taylor e sua família se mudaram quando ela tinha 14 anos?",
+            alternativas: ["Pensilvânia", "Nova Iorque", "Nashville", "Los Angeles"],
+            resposta: 2,
+            dificuldade: "Difícil"
+        },
+        {
+            pergunta: "Quantos gatos Taylor tem?",
+            alternativas: ["1", "2", "3", "4"],
+            resposta: 2,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: ""
+        }
+    ];
+
+    var pergunta_atual = 0;
+    var pontos = 0;
+
+    function embaralhar() {
+        for (var index = perguntas_quiz.length - 1; index > 0; index--) {
+            var novoIndex = Math.floor(Math.random() * (index + 1));
+            [perguntas_quiz[index], perguntas_quiz[novoIndex]] = [perguntas_quiz[novoIndex], perguntas_quiz[index]];
+        }
+    }
+
+    function mostrarPergunta() {
+
+        iniciar.style.display = "none";
+        perguntas.style.display = "flex";
+
+
+        numero_pergunta.innerHTML = `${pergunta_atual + 1}.`
+        dificuldade_pergunta.innerHTML = `Dificuldade: ${perguntas_quiz[pergunta_atual].dificuldade}`
+        div_pergunta.innerHTML = `${perguntas_quiz[pergunta_atual].pergunta}`;
+        alt1.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[0]}`;
+        alt2.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[1]}`;
+        alt3.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[2]}`;
+        alt4.innerHTML = `${perguntas_quiz[pergunta_atual].alternativas[3]}`;
+    }
+
+    function verificar(selected) {
+
+        var correta = perguntas_quiz[pergunta_atual].resposta;
+        var selectedElement = document.getElementById(`alt${selected + 1}`);
+        var corretaElement = document.getElementById(`alt${correta + 1}`);
+
+        if (selected === correta) {
+            selectedElement.classList.add('correto');
+            pontos++;
+        } else {
+            selectedElement.classList.add('errado');
+            corretaElement.classList.add('correto');
+        }
+
+        setTimeout(() => {
+            pergunta_atual++;
+
+            if (pergunta_atual < perguntas_quiz.length) {
+                selectedElement.classList.remove('correto');
+                selectedElement.classList.remove('errado');
+                corretaElement.classList.remove('correto');
+                mostrarPergunta();
+            } else {
+                pergunta_atual = 0;
+
+                iniciar.style.display = "flex";
+                perguntas.style.display = "none";
+
+                if (pontos > (perguntas_quiz.length / 2)) {
+                    div_pontos.innerHTML = `PARABÉNS! VOCÊ ACERTOU ${pontos} de ${perguntas_quiz.length}`
+                } else {
+                    div_pontos.innerHTML = `VOCÊ ACERTOU APENAS ${pontos} de ${perguntas_quiz.length}, TENTE NOVAMENTE!`
+                }
+                selectedElement.classList.remove('correto');
+                selectedElement.classList.remove('errado');
+                corretaElement.classList.remove('correto');
+                pontos = 0
+                embaralhar()
+            }
+        }, 2000)
+
+    }
+
+    embaralhar()
+    mostrarPergunta();
+</script>
