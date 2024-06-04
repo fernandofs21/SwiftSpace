@@ -127,7 +127,7 @@
             pontos: pontos,
         };
 
-        enviarDadosQuiz(resultadosQuiz);
+        enviarResultados(resultadosQuiz);
 
         iniciar.style.display = "flex";
         perguntas.style.display = "none";
@@ -143,7 +143,7 @@
         embaralhar();
     }
 
-    function enviarDadosQuiz(resultadosQuiz) {
+    function enviarResultados(resultadosQuiz) {
         console.log('Enviando dados do quiz:', resultadosQuiz); 
 
         fetch('/quiz/registrarTentativa', {
