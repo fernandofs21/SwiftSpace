@@ -12,6 +12,7 @@ body {
     overflow: hidden;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position-x: 90px;
 }
 
 a {
@@ -25,6 +26,11 @@ a {
 
 .imgsair {
     width: 3rem;
+}
+
+.box a {
+    z-index: 2;
+    margin-left: 230px;
 }
 
 .sair {
@@ -50,15 +56,17 @@ a {
 }
 
 .quiz {
+    z-index: 0;
     position: absolute;
-    margin: auto;
-    margin-top: 115px;
+    /* margin: auto; */
+    /* margin-top: 115px; */
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-left: 120px;
     width: 100%;
-    height: 70%;
+    height: 100%;
     font-family: Raleway;
     /* background-color: rgba(146, 32, 146, 0.5); */
 }

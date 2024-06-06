@@ -86,7 +86,7 @@
                 console.log(resposta);
                 resposta.json().then(json => {
                 console.log(json); // Verifique a estrutura do JSON aqui
-                if (json.id && json.email && json.nome) { // Verifica se as propriedades existem
+                if (json.id  && json.email && json.nome) { // Verifica se as propriedades existem
                     console.log(JSON.stringify(json));
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.EMAIL_USUARIO = json.email;

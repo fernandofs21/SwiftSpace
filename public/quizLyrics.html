@@ -6,36 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="css/quizLyrics.css">
+    <link rel="stylesheet" href="css/dashboards.css">
 </head>
 
 <body onload="validarSessao()" class="quiz2">
-    <div class="box">
-        <a href="dashboard.html">
-            <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div>
-        </a>
+    <div class="janela">
+        <div class="header-left">
+            <h1>SwiftSpace</h1>
 
-        <div class="quiz">
-            <div class="ranking"></div>
-            <div class="game iniciar" id="iniciar">
-                <div class="titulo">Quiz de conhecimentos sobre a vida e as músicas de Taylor Swift</div>
-                <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
-                <div class="pontuacao" id="div_pontos"></div>
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-            <div class="game" id="perguntas">
-                <div class="number"><span id="numero_pergunta"></span>
-                    <div id="dificuldade_pergunta"></div>
+
+            <div class="list-btns">
+                <div class="btn-nav inicio">
+                    <h3>Início</h3>
                 </div>
-                <div class="question" id="div_pergunta"></div>
-                <div class="alternatives">
-                    <div class="botao" id="alt1" onclick="verificar(0)"></div>
-                    <div class="botao" id="alt2" onclick="verificar(1)"></div>
-                    <div class="botao" id="alt3" onclick="verificar(2)"></div>
-                    <div class="botao" id="alt4" onclick="verificar(3)"></div>
+    
+                <div class="texto">
+                    <h3>Teste seus conhecimentos sobre:</h3>
+                </div>
+                
+                <div class="btn-nav">
+                    <a href="quizVida.html">
+                        <h3>A Vida Pessoal de Taylor Swift</h3>
+                    </a>
+                </div>
+    
+                <div class="btn-nav">
+                    <a href="quizLyrics.html">
+                        <h3>As letras de Taylor Swift</h3>
+                    </a>
+                </div>
+    
+                <div class="btn-nav">
+                    <a href="quizMusicas.html">
+                        <h3>As Músicas e Álbuns de Taylor Swift</h3>
+                    </a>
                 </div>
             </div>
-            <div class="graph"></div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="box">
+            <a href="dashboard.html">
+                <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Sair</div>
+            </a>
+    
+            <div class="quiz">
+                <div class="ranking"></div>
+                <div class="game iniciar" id="iniciar">
+                    <div class="titulo">Quiz de conhecimentos sobre a vida e as músicas de Taylor Swift</div>
+                    <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
+                    <div class="pontuacao" id="div_pontos"></div>
+                </div>
+                <div class="game" id="perguntas">
+                    <div class="number"><span id="numero_pergunta"></span>
+                        <div id="dificuldade_pergunta"></div>
+                    </div>
+                    <div class="question" id="div_pergunta"></div>
+                    <div class="alternatives">
+                        <div class="botao" id="alt1" onclick="verificar(0)"></div>
+                        <div class="botao" id="alt2" onclick="verificar(1)"></div>
+                        <div class="botao" id="alt3" onclick="verificar(2)"></div>
+                        <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                    </div>
+                </div>
+                <div class="graph"></div>
+            </div>
         </div>
     </div>
+
+    
 </body>
 
 </html>
@@ -119,7 +165,6 @@
                 corretaElement.classList.remove('correto');
                 mostrarPergunta();
             } else {
-                tempo = new Date();
                 finalizarQuiz();
             }
         }, 500);
@@ -172,6 +217,5 @@
             });
     }
 
-    embaralhar()
-    mostrarPergunta();
+    embaralhar();
 </script>
