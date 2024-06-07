@@ -3,6 +3,11 @@
     src: url(../assets/fonts/Raleway-VariableFont_wght.ttf)
 }
 
+@font-face {
+    font-family: folklore;
+    src: url(../assets/fonts/IMFellDWPica-Italic.ttf);
+  }
+
 body {
     margin: 0;
     padding: 0;
@@ -226,6 +231,7 @@ a {
     font-size: 30px;
     font-weight: 600;
     text-align: center;
+    color: white;
 }
 
 .graph {

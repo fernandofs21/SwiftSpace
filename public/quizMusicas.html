@@ -10,7 +10,7 @@
     <script src="js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao()" class="quiz3">
+<body onload="validarSessao(), contarTentativas()" class="quiz3">
     <div class="janela">
         <div class="header-left">
             <h1>SwiftSpace</h1>
@@ -63,7 +63,7 @@
             <div class="quiz">
                 <div class="ranking"></div>
                 <div class="game iniciar" id="iniciar">
-                    <div class="titulo">Quiz de conhecimentos sobre a vida e as músicas de Taylor Swift</div>
+                    <div class="titulo">Quiz de conhecimentos sobre as músicas e a carreira de Taylor Swift</div>
                     <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
                     <div class="pontuacao" id="div_pontos"></div>
                 </div>
@@ -154,6 +154,20 @@
     var pontos = 0;
     var idUsuario = sessionStorage.ID_USUARIO;
     var idQuiz = 3;
+    var idTentativa = 0;
+
+    function contarTentativas() {
+        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`) 
+        .then(resposta => resposta.json())
+            .then(data => {
+                console.log(data)
+               idTentativa = data.tentativas;
+            })
+            .catch(error => {
+                console.error('Erro ao verificar tentativas:', error);
+            });
+        console.log(idTentativa);
+    }
 
     function embaralhar() {
         for (var index = perguntas_quiz.length - 1; index > 0; index--) {
@@ -199,15 +213,20 @@
                 corretaElement.classList.remove('correto');
                 mostrarPergunta();
             } else {
-                tempo = new Date();
+                selectedElement.classList.remove('correto');
+                selectedElement.classList.remove('errado');
+                corretaElement.classList.remove('correto');
                 finalizarQuiz();
             }
         }, 500);
     }
 
     function finalizarQuiz() {
+        contarTentativas();
+
 
         var resultadosQuiz = {
+            idTentativa: idTentativa,
             idUsuario: idUsuario,
             idQuiz: idQuiz,
             pontos: pontos,
@@ -231,6 +250,8 @@
 
     function enviarResultados(resultadosQuiz) {
         console.log('Enviando dados do quiz:', resultadosQuiz); 
+
+        console.log(resultadosQuiz)
 
         fetch('/quiz/registrarTentativa', {
             method: 'POST',

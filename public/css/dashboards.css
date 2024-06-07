@@ -1,5 +1,5 @@
 
-@font-face {
+/* @font-face {
   font-family: Raleway;
   src: url(../assets/fonts/Raleway-VariableFont_wght.ttf)
 }
@@ -7,7 +7,7 @@
 @font-face {
   font-family: folklore;
   src: url(../assets/fonts/IMFellDWPica-Italic.ttf);
-}
+} */
 
 body {
   margin: 0;
