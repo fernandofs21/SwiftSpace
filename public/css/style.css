@@ -38,7 +38,8 @@ a {
     display: flex;
     margin-top: 15px;
     border-radius: 30px;
-    box-shadow: 4px 4px 70px #c585c5;
+    box-shadow: 0 4px 8px rgba(12, 12, 12, 0.3);
+    /* box-shadow: 4px 4px 70px #c585c5; */
     font-size: 20px;
     z-index: 2;
 }
@@ -105,7 +106,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     border-radius: 20px;
     height: 40vh;
     margin-right: 60px;
@@ -114,11 +115,13 @@ a {
     margin-bottom: auto;
     flex-direction: column;
     backdrop-filter: blur(10px);
-    background-color: rgba(185, 92, 194, 0.2);
+    background-color: rgba(185, 92, 194, 0.4);
     font-family: Raleway;
     text-align: justify;
     font-size: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     justify-content: space-evenly;
+    /* color: white; */
 }
 
 .texto1 {
@@ -134,7 +137,7 @@ a.button {
     margin: 8px;
     background-color: rgba(75, 16, 80, 0.2);
     padding: 1px 6px;
-    border: 1px outset buttonborder;
+    /* border: 1px outset buttonborder; */
     border-radius: 10px;
     text-decoration: none;
     justify-content: center;
@@ -175,13 +178,110 @@ li:hover {
     background-size: 100%;
     background-repeat: no-repeat;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 75vh;
     background: rgb(208,90,190);
     background: linear-gradient(180deg, rgba(208,90,190,1) 0%, rgba(143,48,168,1) 50%, rgba(111,30,151,1) 100%);
     /* background-image: url("taylorswiftttpd.jpg"); */
     /* background-size: cover; */
 }
+
+.albuns {
+    margin-bottom: 20px;
+    font-family: Raleway;
+    font-weight: 800;
+    letter-spacing: 4px;
+    font-size: 30px;
+    text-shadow: 2px 2px 7px rgba(65, 65, 68, 0.8);
+    text-transform: uppercase;
+    color: rgb(212, 212, 212);
+}
+
+.carrossel {
+    z-index: 1;
+    position: relative;
+    width: 79.4vw;
+    max-width: 79.4vw;
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    background-color: rgba(236, 235, 235, 0.2);
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 80%;
+
+}
+
+.slides-box {
+    align-items: center;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-width: 79.4vw;
+    max-width: 79.4vw;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 50px;
+    /* text-align: center; */
+}
+
+.slide img {
+    padding-right: 10px;
+    width: 23vw;
+    height: auto;
+    /* border-radius: 10px 10px 10px 10px; */
+}
+
+.slide span {
+    font-family: Raleway;
+    color: white;
+    margin-left: 5px;
+    margin-top: 20px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    height: 100%;
+}
+
+.direita iframe {
+    justify-content: flex-start;  
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    /* border-radius: 50%; */
+}
+
+.prev {
+    z-index: 2;
+    left: 10px;
+    cursor: pointer;
+}
+
+.next {
+    right: 10px;
+}
+
 
 
 .noticias {
@@ -195,6 +295,8 @@ li:hover {
 
 .sobremim {
     display: flex;
-    height: 500px;
-    background-color: #c4aac3;
+    height: 200vh;
+    /* background-color: #8d578b;     */
+    background: rgb(111,30,151);
+    background: linear-gradient(180deg, rgba(111,30,151,1) 0%, rgba(143,48,168,1) 50%, rgba(208,90,190,1) 100%);
 }

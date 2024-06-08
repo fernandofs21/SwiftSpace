@@ -8,19 +8,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,300&display=swap"
+        rel="stylesheet">
     <script src="./js/sessao.js"></script>
 </head>
 
-<bodyw>
+<body>
 
     <div class="header">
         <div class="container">
             <h1 class="titulo"><a href="index.html">SwiftSpace</a></h1>
             <ul class="navbar">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="#noticias">Noticias</a></li>
-                <li><a href="#sobremim">Sobre Mim</a></li>
+                <li><a href="#inicio">Álbuns</a></li>
+                <li><a href="#sobremim">Sobre</a></li>
                 <li class="entrar"><a href="login.html">Entrar</a></li>
             </ul>
         </div>
@@ -41,17 +42,229 @@
     </div>
 
     <div class="inicio" id="inicio">
-        
+        <span class="albuns">Conheça os álbuns da cantora!</span>
+        <div class="carrossel">
+            <button class="prev" onclick="trocarSlide(-1)">&#10094;</button>
+            <div class="slides-box" id="slideCarrossel">
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/debut cover.jpg" alt="Taylor Swift (Álbum)">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/5eyZZoQEFQWRHkV2xgAeBw?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/fearless cover.webp" alt="Fearless (Taylor's Version)">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/4hDok0OAJd57SGIT8xuWJH?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/speak now cover.jpeg" alt="Speak Now (Taylor's Version)">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/5AEDGbliTTfjOB8TSm1sxt?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/red cover.jpeg" alt="Red (Taylor's Version)">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/6kZ42qRrzov54LcAk4onW9?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/1989 cover.jpeg" alt="1989 Deluxe (Taylor's Version)">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/1o59UpKw81iHR0HPiSkJR0?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/reputation cover.jpeg" alt="reputation">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/6DEjYFkNZh67HP7R9PSZvv?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/lover cover.jpeg" alt="Lover">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/1NAmidJlEaVgA3MpcPFYGq?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/folklore cover.jpg" alt="folklore">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/1pzvBxYgT6OVwJLtHkrdQK?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/evermore cover.jpeg" alt="evermore">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/6AORtDjduMM3bupSWzbTSG?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/midnights cover.webp" alt="Midnights">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/1fnJ7k0bllNfL1kVdNVW1A?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="esquerda">
+                        <img src="assets/imgs/ttpd the anthology cover.jpg" alt="The Tortured Poets Department: The Anthology">
+                    </div>
+                    <div class="direita">
+                        <iframe style="border-radius:12px"
+                            src="https://open.spotify.com/embed/album/5H7ixXZfsNMGbIE5OBSpcb?utm_source=generator"
+                            width="100%" height="152" frameBorder="0" 
+                            allow="encrypted-media"
+                            loading="lazy"></iframe>
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus tempor turpis sed quam maximus, quis egestas ligula porta.
+                            Fusce vel libero sit amet felis dictum aliquam at eget diam.
+                            Nulla at est tempus, vulputate ante ut, pharetra risus.
+                            Donec semper est nec diam pharetra aliquam.</span>
+                    </div>
+                </div>
+            </div>
+            <button class="next" onclick="trocarSlide(1)">&#10095;</button>
+        </div>
     </div>
 
-    <div class="noticias" id="noticias">
+    <!-- <div class="noticias" id="noticias">
 
-    </div>
+    </div> -->
 
     <div class="sobremim" id="sobremim">
 
     </div>
 
-</bodyw>
+</body>
 
 </html>
+
+<script>
+    let slideAtual = 0;
+
+    function trocarSlide(direcao) {
+        const slides = document.querySelectorAll('.slide');
+        slideAtual += direcao;
+
+        if (slideAtual >= slides.length) {
+            slideAtual = 0;
+        } else if (slideAtual < 0) {
+            slideAtual = slides.length - 1;
+        }
+
+        const slideCarrossel = document.getElementById('slideCarrossel');
+        slideCarrossel.style.transform = `translateX(${-slideAtual * 79.4}vw)`;
+    }
+
+</script>
