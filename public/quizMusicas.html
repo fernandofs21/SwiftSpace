@@ -7,6 +7,8 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="css/quizMusicas.css">
     <link rel="stylesheet" href="css//dashboards.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/sessao.js"></script>
 </head>
 
@@ -25,23 +27,23 @@
                         <h3>Início</h3>
                     </a>
                 </div>
-    
+
                 <div class="texto">
                     <h3>Teste seus conhecimentos sobre:</h3>
                 </div>
-                
+
                 <div class="btn-nav">
                     <a href="quizVida.html">
                         <h3>A Vida Pessoal de Taylor Swift</h3>
                     </a>
                 </div>
-    
+
                 <div class="btn-nav">
                     <a href="quizLyrics.html">
                         <h3>As letras de Taylor Swift</h3>
                     </a>
                 </div>
-    
+
                 <div class="btn-nav active-page">
                     <a href="quizMusicas.html">
                         <h3>As Músicas e Álbuns de Taylor Swift</h3>
@@ -54,35 +56,36 @@
             </div>
 
         </div>
-     
+
         <div class="box">
             <a href="dashboard.html">
                 <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Voltar</div>
             </a>
-            
+
             <div class="quiz">
-                <div class="ranking"></div>
                 <div class="game iniciar" id="iniciar">
                     <div class="titulo">Quiz de conhecimentos sobre as músicas e a carreira de Taylor Swift</div>
                     <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
                     <div class="pontuacao" id="div_pontos"></div>
                 </div>
                 <div class="game" id="perguntas">
-                <div class="number"><span id="numero_pergunta"></span>
-                    <div id="dificuldade_pergunta"></div>
-                </div>
-                <div class="question" id="div_pergunta"></div>
-                <div class="alternatives">
-                    <div class="botao" id="alt1" onclick="verificar(0)"></div>
-                    <div class="botao" id="alt2" onclick="verificar(1)"></div>
-                    <div class="botao" id="alt3" onclick="verificar(2)"></div>
-                    <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                    <div class="number"><span id="numero_pergunta"></span>
+                        <div id="dificuldade_pergunta"></div>
+                    </div>
+                    <div class="question" id="div_pergunta"></div>
+                    <div class="alternatives">
+                        <div class="botao" id="alt1" onclick="verificar(0)"></div>
+                        <div class="botao" id="alt2" onclick="verificar(1)"></div>
+                        <div class="botao" id="alt3" onclick="verificar(2)"></div>
+                        <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                    </div>
                 </div>
             </div>
-            <div class="graph"></div>
+            <div class="graph" id="grafico1" style="display: none;">
+                <canvas class="grafico" id="grafico_pontuacao"></canvas>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
@@ -157,11 +160,11 @@
     var idTentativa = 0;
 
     function contarTentativas() {
-        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`) 
-        .then(resposta => resposta.json())
+        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`)
+            .then(resposta => resposta.json())
             .then(data => {
                 console.log(data)
-               idTentativa = data.tentativas;
+                idTentativa = data.tentativas;
             })
             .catch(error => {
                 console.error('Erro ao verificar tentativas:', error);
@@ -180,6 +183,7 @@
 
         iniciar.style.display = "none";
         perguntas.style.display = "flex";
+        grafico1.style.display = "none";
 
 
         numero_pergunta.innerHTML = `${pergunta_atual + 1}.`
@@ -234,6 +238,7 @@
 
         enviarResultados(resultadosQuiz);
 
+
         iniciar.style.display = "flex";
         perguntas.style.display = "none";
 
@@ -249,7 +254,7 @@
     }
 
     function enviarResultados(resultadosQuiz) {
-        console.log('Enviando dados do quiz:', resultadosQuiz); 
+        console.log('Enviando dados do quiz:', resultadosQuiz);
 
         console.log(resultadosQuiz)
 
@@ -267,11 +272,65 @@
                     });
                 }
                 console.log('Dados do quiz enviados com sucesso');
+                buscarPontuacao();
             })
             .catch(error => {
                 console.error('Erro ao enviar dados do quiz para o servidor:', error);
             });
     }
 
+    function buscarPontuacao() {
+
+        var grafico1 = document.getElementById('grafico1');
+        grafico1.style.display = 'block';
+
+        var corretas;
+        var erradas;
+
+        fetch(`/medidas/pontuacao/${idUsuario}/${idQuiz}/${idTentativa + 1}`, { cache: 'no-store' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar pontuação: ${response.statusText}`);
+                }
+                return response.json();
+
+            })
+            .then(data => {
+
+                console.log(data);
+
+                corretas = data.map(item => item.acertos);
+                erradas = data.map(item => item.erros);
+
+                console.log(corretas, erradas);
+
+                var ctx = document.getElementById('grafico_pontuacao').getContext('2d');
+
+                const chartData = {
+                    labels: ['Acertos', 'Erros'],
+                    datasets: [
+                        {
+                            label: 'Pontuação',
+                            data: [corretas, erradas],
+                            backgroundColor: ['#14C310', 'red'],
+                        }
+                    ]
+                };
+
+                var config = {
+                    type: 'doughnut',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                };
+
+                new Chart(ctx, config);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar pontuação:', error);
+            });
+    }
     embaralhar()
 </script>

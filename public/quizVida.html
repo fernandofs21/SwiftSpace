@@ -7,10 +7,12 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="css/quizVida.css">
     <link rel="stylesheet" href="css/dashboards.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao()" class="quiz1">
+<body onload="validarSessao(), contarTentativas()" class="quiz1">
     <div class="janela">
         <div class="header-left">
             <h1>SwiftSpace</h1>
@@ -25,23 +27,23 @@
                         <h3>Início</h3>
                     </a>
                 </div>
-    
+
                 <div class="texto">
                     <h3>Teste seus conhecimentos sobre:</h3>
                 </div>
-                
+
                 <div class="btn-nav active-page">
                     <a href="quizVida.html">
                         <h3>A Vida Pessoal de Taylor Swift</h3>
                     </a>
                 </div>
-    
+
                 <div class="btn-nav">
                     <a href="quizLyrics.html">
                         <h3>As letras de Taylor Swift</h3>
                     </a>
                 </div>
-    
+
                 <div class="btn-nav">
                     <a href="quizMusicas.html">
                         <h3>As Músicas e Álbuns de Taylor Swift</h3>
@@ -57,31 +59,32 @@
 
         <div class="box">
             <a href="dashboard.html">
-            <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Voltar</div>
-        </a>
+                <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Voltar</div>
+            </a>
 
-        <div class="quiz">
-            <div class="ranking"></div>
-            <div class="game iniciar" id="iniciar">
-                <div class="titulo">Quiz de conhecimentos sobre a vida pessoal Taylor Swift</div>
-                <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
-                <div class="pontuacao" id="div_pontos"></div>
-            </div>
-            <div class="game" id="perguntas">
-                <div class="number"><span id="numero_pergunta"></span>
-                    <div id="dificuldade_pergunta"></div>
+            <div class="quiz">
+                <div class="game iniciar" id="iniciar">
+                    <div class="titulo">Quiz de conhecimentos sobre a vida pessoal Taylor Swift</div>
+                    <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
+                    <div class="pontuacao" id="div_pontos"></div>
                 </div>
-                <div class="question" id="div_pergunta"></div>
-                <div class="alternatives">
-                    <div class="botao" id="alt1" onclick="verificar(0)"></div>
-                    <div class="botao" id="alt2" onclick="verificar(1)"></div>
-                    <div class="botao" id="alt3" onclick="verificar(2)"></div>
-                    <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                <div class="game" id="perguntas">
+                    <div class="number"><span id="numero_pergunta"></span>
+                        <div id="dificuldade_pergunta"></div>
+                    </div>
+                    <div class="question" id="div_pergunta"></div>
+                    <div class="alternatives">
+                        <div class="botao" id="alt1" onclick="verificar(0)"></div>
+                        <div class="botao" id="alt2" onclick="verificar(1)"></div>
+                        <div class="botao" id="alt3" onclick="verificar(2)"></div>
+                        <div class="botao" id="alt4" onclick="verificar(3)"></div>
+                    </div>
                 </div>
             </div>
-            <div class="graph"></div>
+            <div class="graph" id="grafico1" style="display: none;">
+                <canvas class="grafico" id="grafico_pontuacao"></canvas>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>
@@ -106,7 +109,46 @@
             dificuldade: "Média"
         },
         {
-            pergunta: ""
+            pergunta: "Qual é o nome do documentário sobre Taylor Swift lançado na Netflix em 2020?",
+            alternativas: ["Taylor Swift: Miss Americana", "Taylor Swift: The Story of Us", "Taylor Swift: Speak Now", "Taylor Swift: The 1989 World Tour"],
+            resposta: 0,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Qual é o nome do irmão de Taylor?",
+            alternativas: ["Austin Swift", "Andrew Swift", "Adam Swift", "Aaron Swift"],
+            resposta: 0,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Quais são os nomes dos gatos de Taylor?",
+            alternativas: ["Meredith, Charles e Olivia", "Benjamin, Cristina e Button", "Olivia, Benjamin, Cristina", "Meredith, Olivia e Benjamin"],
+            resposta: 3,
+            dificuldade: "Difícil"
+        },
+        {
+            pergunta: "Qual é o nome do ator britânico que foi relatado estar em um relacionamento com Taylor Swift de 2016 a 2017?",
+            alternativas: ["Benedict Cumberbatch", "Tom Hiddleston", "Eddie Redmayne", "Daniel Radcliffe"],
+            resposta: 1,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Quantos prêmios Grammy Taylor Swift já ganhou? (jun/2024)",
+            alternativas: ["12", "13", "14", "15"],
+            resposta: 2,
+            dificuldade: "Difícil"
+        },
+        {
+            pergunta: "Qual universidade americana entregou um diploma honorário a Taylor Swift em 2022?",
+            alternativas: ["Universidade de Harvard", "Universidade de Yale", "Universidade de Nova York", "Universidade de Stanford"],
+            resposta: 2,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Qual é o nome do filme musical em que Taylor Swift fez sua estreia como atriz em 2019?",
+            alternativas: ["Cats", "Mamma Mia!", "La La Land", "The Greatest Showman"],
+            resposta: 0,
+            dificuldade: "Fácil"
         }
     ];
 
@@ -117,11 +159,11 @@
     var idTentativa = 0;
 
     function contarTentativas() {
-        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`) 
-        .then(resposta => resposta.json())
+        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`)
+            .then(resposta => resposta.json())
             .then(data => {
                 console.log(data)
-               idTentativa = data.tentativas;
+                idTentativa = data.tentativas;
             })
             .catch(error => {
                 console.error('Erro ao verificar tentativas:', error);
@@ -140,6 +182,7 @@
 
         iniciar.style.display = "none";
         perguntas.style.display = "flex";
+        grafico1.style.display = "none";
 
 
         numero_pergunta.innerHTML = `${pergunta_atual + 1}.`
@@ -209,7 +252,7 @@
     }
 
     function enviarResultados(resultadosQuiz) {
-        console.log('Enviando dados do quiz:', resultadosQuiz); 
+        console.log('Enviando dados do quiz:', resultadosQuiz);
 
         console.log(resultadosQuiz)
 
@@ -227,9 +270,64 @@
                     });
                 }
                 console.log('Dados do quiz enviados com sucesso');
+                buscarPontuacao();
             })
             .catch(error => {
                 console.error('Erro ao enviar dados do quiz para o servidor:', error);
+            });
+    }
+
+    function buscarPontuacao() {
+
+        var grafico1 = document.getElementById('grafico1');
+        grafico1.style.display = 'block';
+
+        var corretas;
+        var erradas;
+
+        fetch(`/medidas/pontuacao/${idUsuario}/${idQuiz}/${idTentativa + 1}`, { cache: 'no-store' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar pontuação: ${response.statusText}`);
+                }
+                return response.json();
+
+            })
+            .then(data => {
+
+                console.log(data);
+
+                corretas = data.map(item => item.acertos);
+                erradas = data.map(item => item.erros);
+
+                console.log(corretas, erradas);
+
+                var ctx = document.getElementById('grafico_pontuacao').getContext('2d');
+
+                const chartData = {
+                    labels: ['Acertos', 'Erros'],
+                    datasets: [
+                        {
+                            label: 'Pontuação',
+                            data: [corretas, erradas],
+                            backgroundColor: ['#14C310', 'red'],
+                        }
+                    ]
+                };
+
+                var config = {
+                    type: 'doughnut',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                };
+
+                new Chart(ctx, config);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar pontuação:', error);
             });
     }
 

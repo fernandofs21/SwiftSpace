@@ -7,10 +7,12 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="css/quizLyrics.css">
     <link rel="stylesheet" href="css/dashboards.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao()" class="quiz2">
+<body onload="validarSessao(), contarTentativas()" class="quiz2">
     <div class="janela">
         <div class="header-left">
             <h1>SwiftSpace</h1>
@@ -25,23 +27,23 @@
                         <h3>Início</h3>
                     </a>
                 </div>
-    
+
                 <div class="texto">
                     <h3>Teste seus conhecimentos sobre:</h3>
                 </div>
-                
+
                 <div class="btn-nav">
                     <a href="quizVida.html">
                         <h3>A Vida Pessoal de Taylor Swift</h3>
                     </a>
                 </div>
-    
+
                 <div class="btn-nav active-page">
                     <a href="quizLyrics.html">
                         <h3>As letras de Taylor Swift</h3>
                     </a>
                 </div>
-    
+
                 <div class="btn-nav">
                     <a href="quizMusicas.html">
                         <h3>As Músicas e Álbuns de Taylor Swift</h3>
@@ -59,9 +61,8 @@
             <a href="dashboard.html">
                 <div class="sair"><img src="assets/icons/voltar.png" class="imgsair"> Voltar</div>
             </a>
-    
+
             <div class="quiz">
-                <div class="ranking"></div>
                 <div class="game iniciar" id="iniciar">
                     <div class="titulo">Quiz de conhecimentos sobre as letras de Taylor Swift</div>
                     <button onclick="mostrarPergunta()" id="botao_iniciar">JOGAR</button>
@@ -79,12 +80,14 @@
                         <div class="botao" id="alt4" onclick="verificar(3)"></div>
                     </div>
                 </div>
-                <div class="graph"></div>
+            </div>
+            <div class="graph" id="grafico1" style="display: none;">
+                <canvas class="grafico" id="grafico_pontuacao"></canvas>
             </div>
         </div>
     </div>
 
-    
+
 </body>
 
 </html>
@@ -113,6 +116,42 @@
             alternativas: ["Groceries", "Bag", "Things", "Stuff"],
             resposta: 0,
             dificuldade: "Difícil"
+        },
+        {
+            pergunta: "De qual música é a seguinte frase 'I'm shining like fireworks over your sad empty town'?",
+            alternativas: ["Sparks Fly", "Dear John", "The Story of Us", "Long Live"],
+            resposta: 1,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Complete a letra: 'I'm sorry, the old Taylor can't come to the phone right now. Why? Oh, 'cause she's ________'",
+            alternativas: ["Dead", "Busy", "Sleeping", "Crying"],
+            resposta: 0,
+            dificuldade: "Fácil"
+        },
+        {
+            pergunta: "Qual foi a alteração feita por Taylor na nova versão de 'Better Than Revenge' onde antes ela cantava 'She's better known for the things that she does on the matress'?",
+            alternativas: ["He was a moth to the flame, she was holding the matches", "He's better known for the things that he does on the mattress", "She's better known for the things that she does on the dance floor", "She's better known for the things that she does on the catwalk"],
+            resposta: 0,
+            dificuldade: "Difícil"
+        },
+        {
+            pergunta: "De qual música é a seguinte frase 'You're still all over me like a wine-stained dress I can't wear anymore'?",
+            alternativas: ["Dress", "Maroon", "All Too Well", "Clean"],
+            resposta: 3,
+            dificuldade: "Média"
+        },
+        {
+            pergunta: "Complete a letra: 'Now i'm begging for ___________ in the story of your life'",
+            alternativas: ["Footnotes", "Endings", "Beginnings", "Chapters"],
+            resposta: 0,
+            dificuldade: "Difícil"
+        },
+        {
+            pergunta: "Em 'Cardigan', qual é a linha seguinte após 'Vintage tee, brand new phone, high heels on cobblestones'?",
+            alternativas: ["When you are young, they assume you know nothing", "They say all's well that ends well", "When you are young, they assume you lack knowledge", "The greatest story they ever told"],
+            resposta: 0,
+            dificuldade: "Média"
         }
     ];
 
@@ -123,11 +162,11 @@
     var idTentativa = 0;
 
     function contarTentativas() {
-        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`) 
-        .then(resposta => resposta.json())
+        fetch(`/quiz/contarTentativas/${idUsuario}/${idQuiz}`)
+            .then(resposta => resposta.json())
             .then(data => {
                 console.log(data)
-               idTentativa = data.tentativas;
+                idTentativa = data.tentativas;
             })
             .catch(error => {
                 console.error('Erro ao verificar tentativas:', error);
@@ -146,6 +185,7 @@
 
         iniciar.style.display = "none";
         perguntas.style.display = "flex";
+        grafico1.style.display = "none";
 
 
         numero_pergunta.innerHTML = `${pergunta_atual + 1}.`
@@ -200,6 +240,7 @@
 
         enviarResultados(resultadosQuiz);
 
+
         iniciar.style.display = "flex";
         perguntas.style.display = "none";
 
@@ -215,7 +256,7 @@
     }
 
     function enviarResultados(resultadosQuiz) {
-        console.log('Enviando dados do quiz:', resultadosQuiz); 
+        console.log('Enviando dados do quiz:', resultadosQuiz);
 
         console.log(resultadosQuiz)
 
@@ -233,9 +274,64 @@
                     });
                 }
                 console.log('Dados do quiz enviados com sucesso');
+                buscarPontuacao();
             })
             .catch(error => {
                 console.error('Erro ao enviar dados do quiz para o servidor:', error);
+            });
+    }
+
+    function buscarPontuacao() {
+
+        var grafico1 = document.getElementById('grafico1');
+        grafico1.style.display = 'block';
+
+        var corretas;
+        var erradas;
+
+        fetch(`/medidas/pontuacao/${idUsuario}/${idQuiz}/${idTentativa + 1}`, { cache: 'no-store' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar pontuação: ${response.statusText}`);
+                }
+                return response.json();
+
+            })
+            .then(data => {
+
+                console.log(data);
+
+                corretas = data.map(item => item.acertos);
+                erradas = data.map(item => item.erros);
+
+                console.log(corretas, erradas);
+
+                var ctx = document.getElementById('grafico_pontuacao').getContext('2d');
+
+                const chartData = {
+                    labels: ['Acertos', 'Erros'],
+                    datasets: [
+                        {
+                            label: 'Pontuação',
+                            data: [corretas, erradas],
+                            backgroundColor: ['#14C310', 'red'],
+                        }
+                    ]
+                };
+
+                var config = {
+                    type: 'doughnut',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                };
+
+                new Chart(ctx, config);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar pontuação:', error);
             });
     }
 
