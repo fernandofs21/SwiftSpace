@@ -16,6 +16,39 @@ body {
   overflow: auto;
 }
 
+.tabela-ranking {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  margin-top: 120px;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabela-ranking select {
+  width: 200px;
+  height: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ranking, th, td{
+  border-collapse: collapse; /*define a separação entre as bordar*/
+  padding: 10px;
+  text-align: left;
+  border: 1px solid rgb(160 160 160);
+  text-align: center;
+}
+
+th{
+  background-color: lightgray;
+}
+
+.ranking {
+  min-width: 90%;
+}
+
 /* PAGINA DOS GRÁFICOS 2023 */
 
 .janela {

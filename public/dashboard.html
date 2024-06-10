@@ -17,7 +17,7 @@
 </head>
 
 
-<body onload="">
+<body onload="validarSessao(), atualizarRanking()">
 
     <div class="janela">
         <div class="header-left">
@@ -62,7 +62,28 @@
         </div>
 
         <div class="dash">
-        
+            <div class="conteudo">
+                <div class="tabela-ranking">
+                    <h3>Ranking</h3>
+                    <select id="quizSelect" onchange="atualizarRanking()">
+                        <option value="1" selected>Quiz Vida</option>
+                        <option value="2">Quiz Letras</option>
+                        <option value="3">Quiz Músicas</option>
+                    </select>
+                    <table class="ranking">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Nome</th>
+                                <th>Pontuação</th>
+                                <th>Data e Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -74,6 +95,43 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    
+    function atualizarRanking() {
+        var idQuiz = document.getElementById('quizSelect').value;
+
+        fetch(`http://localhost:3333/ranking/colocacoes/${idQuiz}`, { cache: 'no-store' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar ranking: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                var rankingBody = document.getElementById('rankingBody');
+                rankingBody.innerHTML = '';
+
+                data.forEach((row, index) => {
+                    var tr = document.createElement('tr');
+
+                    var posicaoTd = document.createElement('td');
+                    posicaoTd.textContent = `${index + 1}º`;
+                    tr.appendChild(posicaoTd);
+
+                    var nomeTd = document.createElement('td');
+                    nomeTd.textContent = row.nome;
+                    tr.appendChild(nomeTd);
+
+                    var pontuacaoTd = document.createElement('td');
+                    pontuacaoTd.textContent = row.pontuacao;
+                    tr.appendChild(pontuacaoTd);
+
+                    var diaTd = document.createElement('td');
+                    diaTd.textContent = row.dia;
+                    tr.appendChild(diaTd);
+
+                    rankingBody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error('Erro em coletar os dados:', error));
+    }
 
 </script>
