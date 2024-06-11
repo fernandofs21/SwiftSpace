@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/quizMusicas.css">
     <script src="js/sessao.js"></script>
 
-    <!-- scripts do Chart.js - 2022-1 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
@@ -83,6 +83,11 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="grafico-albuns">
+                    <h3>Quantidade de músicas por álbum</h3>
+                    <canvas id="graficoAlbuns" class='grafico-album'></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -93,7 +98,11 @@
 </html>
 
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded and parsed');
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    gerarGraficoAlbuns();
+});
 
     function atualizarRanking() {
         var idQuiz = document.getElementById('quizSelect').value;
@@ -132,6 +141,40 @@
                 });
             })
             .catch(error => console.error('Erro em coletar os dados:', error));
+    }
+
+    function gerarGraficoAlbuns() {
+
+        console.log('Gerando gráfico de álbuns...');
+        fetch(`http://localhost:3333/medidas/albuns`)
+            .then(response => {
+                console.log('Resposta recebida:', response);
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar contagem de álbuns: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dados recebidos:', data);
+
+                var albuns = data.map(row => row.titulo);
+                var qtdMusicas = data.map(row => row.quantidade);
+
+                var ctx = document.getElementById('graficoAlbuns').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: albuns,
+                        datasets: [{
+                            label: 'Quantidade de usuários',
+                            data: qtdMusicas,
+                            backgroundColor: ['#bed7ba', '#eac086', '#c4aac3', '#823a47', '#bde2f4', '#827c7e', '#f5b9d3', '#d4d4cc', '#8f664d', '#394b63', '#A79E0F']
+                        }]
+                    }
+                });
+
+            })
+
     }
 
 </script>

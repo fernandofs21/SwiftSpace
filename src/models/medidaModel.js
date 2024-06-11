@@ -15,6 +15,15 @@ function buscarPontuacao(idUsuario, idQuiz, idTentativa) {
     
 }
 
+function buscarAlbuns() {
+
+        var instrucaoSql = `SELECT count(idUsuario) as quantidade, titulo FROM album left join usuario on fkAlbum = idAlbum group by idAlbum`;
+
+        console.log("Executando a instrução SQL: \n" + instrucaoSql);
+        return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    buscarPontuacao
+    buscarPontuacao,
+    buscarAlbuns
 }
