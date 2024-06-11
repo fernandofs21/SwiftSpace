@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SwiftSpace | Dashboard</title>
-    <link rel="icon" href='assets/icons/icon SS.png' type="image/x-icon"/>
+    <link rel="icon" href='assets/icons/icon SS.png' type="image/x-icon" />
     <link rel="stylesheet" href="css/dashboards.css">
     <link rel="stylesheet" href="css/quizMusicas.css">
     <script src="js/sessao.js"></script>
@@ -89,6 +89,7 @@
                     <canvas id="graficoAlbuns" class='grafico-album'></canvas>
                 </div>
             </div>
+            <div class="albumpopular" id="albumpopular"></div>
         </div>
     </div>
 
@@ -156,6 +157,7 @@
             })
             .then(data => {
                 console.log('Dados recebidos:', data);
+                mostrarAlbumMaisPopular(data);
 
                 var albuns = data.map(row => row.titulo);
                 var qtdMusicas = data.map(row => row.quantidade);
@@ -190,6 +192,23 @@
 
             })
 
+    }
+
+    function mostrarAlbumMaisPopular(data) {
+        var albumMaisPopular = "";
+        var qtdUsuarios = 0;
+
+        data.forEach(row => {
+            if (row.quantidade > qtdUsuarios) {
+                qtdUsuarios = row.quantidade;
+                albumMaisPopular = row.titulo;
+            }
+        });
+
+        var mensagem = `O álbum mais popular é:<br>
+        <span style="font-weight: 700;">${albumMaisPopular}</span>
+         com ${qtdUsuarios} usuários`;
+        albumpopular.innerHTML = mensagem;
     }
 
 </script>
