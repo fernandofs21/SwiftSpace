@@ -21,12 +21,12 @@
       </ul>
     </div>
 
-    <div class="formulario">
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
       </div>
+    </div>
+    <div class="formulario">
 
       <div class="cadastro">
         <div>
@@ -40,11 +40,11 @@
           </select>
           <button onclick="cadastrar()">Cadastre-se</button>
         </div>
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/circle-loading.gif" id="loading-gif" />
+        </div>
       </div>
 
-      <div id="div_aguardar" class="loading-div">
-        <img src="./assets/circle-loading.gif" id="loading-gif" />
-      </div>
 
       <div id="div_erros_login"></div>
     </div>

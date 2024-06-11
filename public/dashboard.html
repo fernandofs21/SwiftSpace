@@ -64,7 +64,7 @@
         <div class="dash">
             <div class="conteudo">
                 <div class="tabela-ranking">
-                    <h3>Ranking</h3>
+                    <h3>RANKING DOS QUIZZES</h3>
                     <select id="quizSelect" onchange="atualizarRanking()">
                         <option value="1" selected>Quiz Vida</option>
                         <option value="2">Quiz Letras</option>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="grafico-albuns">
-                    <h3>Quantidade de músicas por álbum</h3>
+                    <h3>QUANTIDADE DE USUÁRIOS POR ÁLBUM</h3>
                     <canvas id="graficoAlbuns" class='grafico-album'></canvas>
                 </div>
             </div>
@@ -99,10 +99,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    gerarGraficoAlbuns();
-});
+        console.log('DOM fully loaded and parsed');
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        gerarGraficoAlbuns();
+    });
 
     function atualizarRanking() {
         var idQuiz = document.getElementById('quizSelect').value;
@@ -170,7 +170,22 @@
                             data: qtdMusicas,
                             backgroundColor: ['#bed7ba', '#eac086', '#c4aac3', '#823a47', '#bde2f4', '#827c7e', '#f5b9d3', '#d4d4cc', '#8f664d', '#394b63', '#A79E0F']
                         }]
+                    },
+                    options: {
+                        legend: {
+                            fontColor: "black"
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: "black",
+                                    stepSize: 1,
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
                     }
+
                 });
 
             })

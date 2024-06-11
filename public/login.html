@@ -21,16 +21,16 @@
             </ul>
         </div>
 
-        <div class="formulario">
-            <div class="alerta_erro">
-                <div class="card_erro" id="cardErro">
-                    <span id="mensagem_erro"></span>
-                </div>
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
             </div>
+        </div>
+        <div class="formulario">
 
             <div class="login">
                 <div>
-                    <label >Login</label>
+                    <label>Login</label>
                     <input type="email" placeholder="Email" id="email_input">
                     <input type="password" placeholder="Senha" id="senha_input">
                     <button onclick="entrar()">Entrar</button>
@@ -39,10 +39,10 @@
                     <span>Ainda não tem uma conta?</span>
                     <span><a href="cadastro.html">Cadastre-se</a></span>
                 </div>
+            <div id="div_aguardar" class="loading-div">
+                <img src="./assets/circle-loading.gif" id="loading-gif" />
             </div>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-            <img src="./assets/circle-loading.gif" id="loading-gif" />
+            </div>
         </div>
 
         <div id="div_erros_login"></div>
@@ -85,21 +85,21 @@
             if (resposta.ok) {
                 console.log(resposta);
                 resposta.json().then(json => {
-                console.log(json); // Verifique a estrutura do JSON aqui
-                if (json.id  && json.email && json.nome) { // Verifica se as propriedades existem
-                    console.log(JSON.stringify(json));
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
+                    console.log(json); // Verifique a estrutura do JSON aqui
+                    if (json.id && json.email && json.nome) { // Verifica se as propriedades existem
+                        console.log(JSON.stringify(json));
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
 
-                    setTimeout(function () {
-                        window.location = "./dashboard.html";
-                    }, 1000); // apenas para exibir o loading
-                } else {
-                    console.error("Propriedades esperadas não encontradas no JSON:", json);
-                    finalizarAguardar("Propriedades esperadas não encontradas no JSON");
-                }
-            });
+                        setTimeout(function () {
+                            window.location = "./dashboard.html";
+                        }, 1000); // apenas para exibir o loading
+                    } else {
+                        console.error("Propriedades esperadas não encontradas no JSON:", json);
+                        finalizarAguardar("Propriedades esperadas não encontradas no JSON");
+                    }
+                });
 
             } else {
 
@@ -118,7 +118,7 @@
         return false;
     }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
 </script>

@@ -7,11 +7,17 @@ body {
 /* pagina graficos */
 
 .dash {
+  background-image: url(../assets/imgs/101723-taylorswift-hero_epm1ht.jpeg);
+  background-size: cover;
+  /* background-position-y: -100px */
+  /* background-position-x: -100px; */
+  background-repeat: no-repeat;
+  background-color: black;
   width: 85%;
   position: relative;
   top: 0;
   left: 15%;
-  background-color: white;
+  /* background-color: white; */
   height: 100vh;
   overflow: auto;
 }
@@ -20,18 +26,24 @@ body {
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  gap: 0px;
+  /* background-color: black; */
 }
 
 .tabela-ranking {
   display: flex;
   flex-direction: column;
   margin-left: 30px;
-  margin-bottom: 120px;
-  width: 500px;
+  /* margin-bottom: 120px; */
+  min-width: 480px;
   justify-content: center;
   align-items: center;
+  background-color: rgb(255, 223, 250, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+
 }
 
 .tabela-ranking select {
@@ -39,6 +51,8 @@ body {
   height: 30px;
   margin-bottom: 20px;
   text-align: center;
+  background-color: rgb(255, 223, 250, 0.8);
+  border-radius: 10px;
 }
 
 .tabela-ranking, h3 {
@@ -60,10 +74,22 @@ th{
 .ranking {
   min-width: 90%;
 }
-
+  
 .grafico-albuns {
   text-align: center;
-  /* margin-top: 120px; */
+  transform: scale(0.9);
+  /* margin-left: 50px; */
+  background-color: rgb(255, 223, 250, 0.8);
+  border-radius: 10px;
+  padding-top: 10px;
+}
+
+.grafico-albuns canvas {
+  background-color: rgb(255, 223, 250, 0.1);
+  /* filter: blur(50%); */
+  padding: 10px;
+  width: 900px;
+  border-radius: 10px;
 }
 
 .grafico-album {
