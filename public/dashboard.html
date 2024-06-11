@@ -146,7 +146,7 @@
     function gerarGraficoAlbuns() {
 
         console.log('Gerando gráfico de álbuns...');
-        fetch(`http://localhost:3333/medidas/albuns`)
+        fetch(`/medidas/albuns`)
             .then(response => {
                 console.log('Resposta recebida:', response);
                 if (!response.ok) {
